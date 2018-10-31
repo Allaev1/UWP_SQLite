@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using UWP_SQLite_CRUD_Sample.ViewModels;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,6 +26,12 @@ namespace UWP_SQLite_CRUD_Sample.Views
         public AddEditPage()
         {
             this.InitializeComponent();
+        }
+
+        AddEditPageViewModel _addEditPageViewModel;
+        public AddEditPageViewModel ViewModel
+        {
+            get { return _addEditPageViewModel ?? (_addEditPageViewModel = new AddEditPageViewModel()); }
         }
     }
 }

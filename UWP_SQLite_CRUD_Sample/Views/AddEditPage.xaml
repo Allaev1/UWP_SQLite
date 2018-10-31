@@ -9,6 +9,14 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <StackPanel>
+            <TextBox Header="Id" Text="{x:Bind ViewModel.Id,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+            <TextBox Header="Product name" Text="{x:Bind ViewModel.ProductName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+            <TextBox Header="Unit price" Text="{x:Bind ViewModel.UnitPrice,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Save" Command="{x:Bind ViewModel.Save}" Margin="5"/>
+                <Button Content="Back" Command="{x:Bind ViewModel.Back}" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>

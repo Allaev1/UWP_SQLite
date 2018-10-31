@@ -47,6 +47,7 @@ namespace UWP_SQLite_CRUD_Sample
             }
 
             SimpleIoc.Default.Register<MainPageViewModel>();
+            SimpleIoc.Default.Register<AddEditPageViewModel>();
 
             await NavigationService.NavigateAsync(typeof(MainPage));
         }
@@ -55,6 +56,8 @@ namespace UWP_SQLite_CRUD_Sample
         {
             if (page is MainPage)
                 return SimpleIoc.Default.GetInstance<MainPageViewModel>();
+            else if (page is AddEditPage)
+                return SimpleIoc.Default.GetInstance<AddEditPageViewModel>();
             else
                 return base.ResolveForPage(page, navigationService);
         }
