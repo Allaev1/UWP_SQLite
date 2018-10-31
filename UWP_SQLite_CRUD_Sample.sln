@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UWP_SQLite_CRUD_Sample", "UWP_SQLite_CRUD_Sample\UWP_SQLite_CRUD_Sample.csproj", "{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}.Debug|ARM.ActiveCfg = Debug|ARM
+		{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}.Debug|ARM.Build.0 = Debug|ARM
+		{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}.Debug|ARM.Deploy.0 = Debug|ARM
+		{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}.Debug|x64.ActiveCfg = Debug|x64
+		{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}.Debug|x64.Build.0 = Debug|x64
+		{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}.Debug|x64.Deploy.0 = Debug|x64
+		{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}.Debug|x86.ActiveCfg = Debug|x86
+		{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}.Debug|x86.Build.0 = Debug|x86
+		{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}.Debug|x86.Deploy.0 = Debug|x86
+		{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}.Release|ARM.ActiveCfg = Release|ARM
+		{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}.Release|ARM.Build.0 = Release|ARM
+		{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}.Release|ARM.Deploy.0 = Release|ARM
+		{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}.Release|x64.ActiveCfg = Release|x64
+		{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}.Release|x64.Build.0 = Release|x64
+		{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}.Release|x64.Deploy.0 = Release|x64
+		{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}.Release|x86.ActiveCfg = Release|x86
+		{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}.Release|x86.Build.0 = Release|x86
+		{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {64ED2C06-5B8F-4E04-AADF-B5C666D7F22B}
+	EndGlobalSection
+EndGlobal
