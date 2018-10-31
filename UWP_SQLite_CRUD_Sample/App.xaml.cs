@@ -17,7 +17,10 @@ using Windows.UI.Xaml.Navigation;
 using GalaSoft.MvvmLight.Ioc;
 using UWP_SQLite_CRUD_Sample.ViewModels;
 using Template10.Common;
+using UWP_SQLite_CRUD_Sample.Views;
 using System.Threading.Tasks;
+using Template10.Services.NavigationService;
+using Windows.Storage;
 
 namespace UWP_SQLite_CRUD_Sample
 {
@@ -33,16 +36,28 @@ namespace UWP_SQLite_CRUD_Sample
         public App()
         {
             this.InitializeComponent();
-            //this.Suspending += OnSuspending;
         }
 
         public override async Task OnStartAsync(StartKind startKind, IActivatedEventArgs args)
         {
+            if (await ApplicationData.Current.LocalFolder.TryGetItemAsync("phones.db") == null)
+            {
+                StorageFile databaseFile = await Package.Current.InstalledLocation.GetFileAsync("phones.db");
+                await databaseFile.CopyAsync(ApplicationData.Current.LocalFolder);
+            }
+
             SimpleIoc.Default.Register<MainPageViewModel>();
 
-            await NavigationService.NavigateAsync(typeof(Views.MainPage));
+            await NavigationService.NavigateAsync(typeof(MainPage));
         }
 
+        public override INavigable ResolveForPage(Page page, NavigationService navigationService)
+        {
+            if (page is MainPage)
+                return SimpleIoc.Default.GetInstance<MainPageViewModel>();
+            else
+                return base.ResolveForPage(page, navigationService);
+        }
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used such as when the application is launched to open a specific file.
