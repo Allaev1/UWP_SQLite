@@ -10,7 +10,12 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <ListBox ItemsSource="{x:Bind ViewModel.Products}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <AppBarButton HorizontalAlignment="Right" Icon="Add" Command="{x:Bind ViewModel.AddCommand}"/>
+        <ListBox ItemsSource="{x:Bind ViewModel.Products}" Grid.Row="1">
             <ListBox.ItemTemplate>
                 <DataTemplate x:DataType="dataBase:Product">
                     <TextBlock>
