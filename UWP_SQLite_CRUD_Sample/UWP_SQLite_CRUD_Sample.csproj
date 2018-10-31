@@ -105,7 +105,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="NORTHWIND.sqlite" />
+    <Content Include="NORTHWIND.sqlite" />
     <None Include="UWP_SQLite_CRUD_Sample_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

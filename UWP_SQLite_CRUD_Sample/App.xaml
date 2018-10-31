@@ -1,7 +1,8 @@
-﻿<Application
+﻿<alien:BootStrapper
     x:Class="UWP_SQLite_CRUD_Sample.App"
+    xmlns:alien="using:Template10.Common"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:UWP_SQLite_CRUD_Sample">
 
-</Application>
+</alien:BootStrapper>
