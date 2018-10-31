@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using GalaSoft.MvvmLight.Ioc;
+using UWP_SQLite_CRUD_Sample.ViewModels;
 
 namespace UWP_SQLite_CRUD_Sample
 {
@@ -40,6 +41,8 @@ namespace UWP_SQLite_CRUD_Sample
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            SimpleIoc.Default.Register<MainPageViewModel>();
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
