@@ -35,14 +35,14 @@ namespace UWP_SQLite_CRUD_Sample
         /// </summary>
         public App()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         public override async Task OnStartAsync(StartKind startKind, IActivatedEventArgs args)
         {
-            if (await ApplicationData.Current.LocalFolder.TryGetItemAsync("phones.db") == null)
+            if (await ApplicationData.Current.LocalFolder.TryGetItemAsync("NORTHWIND.sqlite") == null)
             {
-                StorageFile databaseFile = await Package.Current.InstalledLocation.GetFileAsync("phones.db");
+                StorageFile databaseFile = await Package.Current.InstalledLocation.GetFileAsync("NORTHWIND.sqlite");
                 await databaseFile.CopyAsync(ApplicationData.Current.LocalFolder);
             }
 

@@ -5,10 +5,23 @@
     xmlns:local="using:UWP_SQLite_CRUD_Sample"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dataBase="using:DataBase" 
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <ListBox ItemsSource="{x:Bind ViewModel.Products}">
+            <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="dataBase:Product">
+                    <TextBlock>
+                        <Run Text="{x:Bind Id}"/>
+                        <Run Text="). "/>
+                        <Run Text="{x:Bind ProductName}"/>
+                        <Run Text=" - "/>
+                        <Run Text="{x:Bind UnitPrice}"/>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>

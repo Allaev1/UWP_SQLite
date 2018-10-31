@@ -9,11 +9,11 @@ namespace DataBase
 {
     public class NorthwindContext : DbContext
     {
-        public DbSet<Product> Products;
+        public DbSet<Product> Products { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder dbContext)
         {
-            dbContext.UseSqlite("Filename=NORTHWIND.sqlite");
+            dbContext.UseSqlite("DataSource=NORTHWIND.sqlite");
         }
     }
 }

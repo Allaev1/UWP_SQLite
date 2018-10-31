@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using UWP_SQLite_CRUD_Sample.ViewModels;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -25,6 +26,12 @@ namespace UWP_SQLite_CRUD_Sample.Views
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        MainPageViewModel _viewModel;
+        public MainPageViewModel ViewModel
+        {
+            get { return _viewModel ?? (_viewModel = new MainPageViewModel()); }
         }
     }
 }
