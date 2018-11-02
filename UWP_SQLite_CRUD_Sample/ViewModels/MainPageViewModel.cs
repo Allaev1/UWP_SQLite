@@ -48,11 +48,6 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
             set { Set(ref _discontinuedProducts, value); }
             get { return _discontinuedProducts; }
         }
-
-        public Product SelectedAvailableProducts
-        {
-            set; get;
-        }
         #endregion
 
         #region Commands
@@ -88,7 +83,13 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
 
         public void DragOver(object sender, DragEventArgs e)
         {
-            e.AcceptedOperation = DataPackageOperation.Move;
+            ListView listViewSender = sender as ListView;
+            //TODO: Coupling with view!!!!!! Find way not to use reference on the view
+            if (draggableItem.Discontinued == false && listViewSender.Name == "AvailableList"
+                || draggableItem.Discontinued == true && listViewSender.Name == "DiscontinuedList")
+                e.AcceptedOperation = DataPackageOperation.None;
+            else
+                e.AcceptedOperation = DataPackageOperation.Move;
         }
 
         #region Reminder to Drop
@@ -100,19 +101,34 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
         {
             e.AcceptedOperation = DataPackageOperation.Move;
 
-            Product becomeDiscontinuedItem = context.Products.First(a => a.Id == draggableItem.Id);
+            Product item = context.Products.First(a => a.Id == draggableItem.Id);
             //Item with old value of discontinued property
             //that will be removed on the same item but with edited discontinued prop on TRUE 
             //Product removableItem = context.Products.First(a => a.Id == becomeDiscontinuedItem.Id);
 
-            _availableProducts.Remove(becomeDiscontinuedItem);
-            context.Products.Remove(becomeDiscontinuedItem);
-            context.SaveChanges();
+            switch (item.Discontinued)
+            {
+                case true:
+                    _discontinuedProducts.Remove(item);
+                    context.Products.Remove(item);
+                    context.SaveChanges();
 
-            becomeDiscontinuedItem.Discontinued = true; //Change discontinued prop
+                    item.Discontinued = false; //Change discontinued prop
 
-            _discontinuedProducts.Add(becomeDiscontinuedItem);
-            context.Products.Add(becomeDiscontinuedItem);
+                    _availableProducts.Add(item);
+                    context.Products.Add(item);
+                    break;
+                case false:
+                    _availableProducts.Remove(item);
+                    context.Products.Remove(item);
+                    context.SaveChanges();
+
+                    item.Discontinued = true; //Change discontinued prop
+
+                    _discontinuedProducts.Add(item);
+                    context.Products.Add(item);
+                    break;
+            }
 
             context.SaveChanges();
         }
