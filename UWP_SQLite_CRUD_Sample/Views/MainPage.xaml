@@ -26,11 +26,12 @@
         <TextBlock Text="Products is available" Grid.Row="1" HorizontalAlignment="Center" />
         <TextBlock Text="Discontinued product" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"/>
 
-        <ListView x:Name="SimpleList" ItemsSource="{x:Bind ViewModel.AvailableProducts}" 
+        <ListView x:Name="SimpleList" ItemsSource="{x:Bind ViewModel.AvailableProducts,Mode=TwoWay}" 
                   CanDragItems="True" 
                   DragItemsStarting="{x:Bind ViewModel.DragItemsStarting}"
                   Grid.Row="2"
-                  AllowDrop="True">
+                  AllowDrop="True"
+                  SelectedItem="{x:Bind ViewModel.SelectedAvailableProducts,Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="dataBase:Product">
                     <StackPanel>
@@ -49,7 +50,7 @@
         </ListView>
 
         <ListView Grid.Column="1" 
-                  ItemsSource="{x:Bind ViewModel.DiscontinuedProducts}"
+                  ItemsSource="{x:Bind ViewModel.DiscontinuedProducts,Mode=TwoWay}"
                   Grid.Row="2"
                   AllowDrop="True"
                   CanDragItems="True"

@@ -12,6 +12,7 @@ using UWP_SQLite_CRUD_Sample.Views;
 using Windows.UI.Xaml.Controls;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml;
+using Microsoft.EntityFrameworkCore;
 
 namespace UWP_SQLite_CRUD_Sample.ViewModels
 {
@@ -22,6 +23,7 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
         ObservableCollection<Product> _availableProducts;
         ObservableCollection<Product> _discontinuedProducts;
         INavigationService navigationService;
+        Product draggableItem;
 
         public MainPageViewModel()
         {
@@ -46,6 +48,11 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
             set { Set(ref _discontinuedProducts, value); }
             get { return _discontinuedProducts; }
         }
+
+        public Product SelectedAvailableProducts
+        {
+            set; get;
+        }
         #endregion
 
         #region Commands
@@ -67,18 +74,47 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
         public void DragItemsStarting(object sender, DragItemsStartingEventArgs e)
         {
             e.Data.RequestedOperation = DataPackageOperation.Move;
+            draggableItem = e.Items.Last() as Product;
         }
         #endregion
 
         #region Events of discontinued list
+
+        #region Reminder to DragOver
+        //Usually used to implement logic that prevent
+        //adding object of alien type to the type of items
+        //of the list to what your are drag
+        #endregion
+
         public void DragOver(object sender, DragEventArgs e)
         {
             e.AcceptedOperation = DataPackageOperation.Move;
         }
 
+        #region Reminder to Drop
+        //Write the implementation of what to do when 
+        //item have already draged in the other list
+        #endregion
+
         public void Drop(object sender, DragEventArgs e)
         {
             e.AcceptedOperation = DataPackageOperation.Move;
+
+            Product becomeDiscontinuedItem = context.Products.First(a => a.Id == draggableItem.Id);
+            //Item with old value of discontinued property
+            //that will be removed on the same item but with edited discontinued prop on TRUE 
+            //Product removableItem = context.Products.First(a => a.Id == becomeDiscontinuedItem.Id);
+
+            _availableProducts.Remove(becomeDiscontinuedItem);
+            context.Products.Remove(becomeDiscontinuedItem);
+            context.SaveChanges();
+
+            becomeDiscontinuedItem.Discontinued = true; //Change discontinued prop
+
+            _discontinuedProducts.Add(becomeDiscontinuedItem);
+            context.Products.Add(becomeDiscontinuedItem);
+
+            context.SaveChanges();
         }
         #endregion
         #endregion
