@@ -10,6 +10,8 @@ using DataBase;
 using System.Collections.ObjectModel;
 using UWP_SQLite_CRUD_Sample.Views;
 using Windows.UI.Xaml.Controls;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.UI.Xaml;
 
 namespace UWP_SQLite_CRUD_Sample.ViewModels
 {
@@ -59,9 +61,26 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
         #endregion
         #endregion
 
-        public void ListView_DragItemsStarting(object sender, DragItemsStartingEventArgs e)
-        {
+        #region EventHendlers
 
+        #region Events of availale list
+        public void DragItemsStarting(object sender, DragItemsStartingEventArgs e)
+        {
+            e.Data.RequestedOperation = DataPackageOperation.Move;
         }
+        #endregion
+
+        #region Events of discontinued list
+        public void DragOver(object sender, DragEventArgs e)
+        {
+            e.AcceptedOperation = DataPackageOperation.Move;
+        }
+
+        public void Drop(object sender, DragEventArgs e)
+        {
+            e.AcceptedOperation = DataPackageOperation.Move;
+        }
+        #endregion
+        #endregion
     }
 }

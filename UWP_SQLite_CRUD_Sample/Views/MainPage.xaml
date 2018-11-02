@@ -28,10 +28,9 @@
 
         <ListView x:Name="SimpleList" ItemsSource="{x:Bind ViewModel.AvailableProducts}" 
                   CanDragItems="True" 
-                  DragItemsStarting="{x:Bind ViewModel.ListView_DragItemsStarting}"
+                  DragItemsStarting="{x:Bind ViewModel.DragItemsStarting}"
                   Grid.Row="2"
-                  AllowDrop="True"
-                  DragItemsCompleted="SimpleList_DragItemsCompleted">
+                  AllowDrop="True">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="dataBase:Product">
                     <StackPanel>
@@ -52,8 +51,10 @@
         <ListView Grid.Column="1" 
                   ItemsSource="{x:Bind ViewModel.DiscontinuedProducts}"
                   Grid.Row="2"
-                  CanReorderItems="True" 
-                  AllowDrop="True">
+                  AllowDrop="True"
+                  CanDragItems="True"
+                  DragOver="{x:Bind ViewModel.DragOver}"
+                  Drop="{x:Bind ViewModel.Drop}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="dataBase:Product">
                     <StackPanel>
