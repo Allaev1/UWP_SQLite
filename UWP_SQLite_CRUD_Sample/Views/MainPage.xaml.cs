@@ -33,5 +33,10 @@ namespace UWP_SQLite_CRUD_Sample.Views
         {
             get { return _viewModel ?? (_viewModel = new MainPageViewModel()); }
         }
+
+        private void SimpleList_DragItemsCompleted(ListViewBase sender, DragItemsCompletedEventArgs args)
+        {
+
+        }
     }
 }

@@ -12,21 +12,63 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <AppBarButton HorizontalAlignment="Right" Icon="Add" Command="{x:Bind ViewModel.AddCommand}"/>
-        <ListBox ItemsSource="{x:Bind ViewModel.Products}" Grid.Row="1">
-            <ListBox.ItemTemplate>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <AppBarButton HorizontalAlignment="Right" Icon="Add" Command="{x:Bind ViewModel.AddCommand}" Grid.Column="1"/>
+
+        <TextBlock Text="Products is available" Grid.Row="1" HorizontalAlignment="Center" />
+        <TextBlock Text="Discontinued product" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"/>
+
+        <ListView x:Name="SimpleList" ItemsSource="{x:Bind ViewModel.AvailableProducts}" 
+                  CanDragItems="True" 
+                  DragItemsStarting="{x:Bind ViewModel.ListView_DragItemsStarting}"
+                  Grid.Row="2"
+                  AllowDrop="True"
+                  DragItemsCompleted="SimpleList_DragItemsCompleted">
+            <ListView.ItemTemplate>
                 <DataTemplate x:DataType="dataBase:Product">
-                    <TextBlock>
+                    <StackPanel>
+                        <TextBlock>
+                        <Run Text="ID - "/>
                         <Run Text="{x:Bind Id}"/>
-                        <Run Text="). "/>
+                        <Run Text=". "/>
                         <Run Text="{x:Bind ProductName}"/>
                         <Run Text=" - "/>
                         <Run Text="{x:Bind UnitPrice}"/>
-                    </TextBlock>
+                        </TextBlock>
+                        <!--<ToggleSwitch Margin="20,0,0,0" OnContent="Discontinued" OffContent="Continued"/>-->
+                    </StackPanel>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView Grid.Column="1" 
+                  ItemsSource="{x:Bind ViewModel.DiscontinuedProducts}"
+                  Grid.Row="2"
+                  CanReorderItems="True" 
+                  AllowDrop="True">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="dataBase:Product">
+                    <StackPanel>
+                        <TextBlock>
+                        <Run Text="ID - "/>
+                        <Run Text="{x:Bind Id}"/>
+                        <Run Text=". "/>
+                        <Run Text="{x:Bind ProductName}"/>
+                        <Run Text=" - "/>
+                        <Run Text="{x:Bind UnitPrice}"/>
+                        </TextBlock>
+                        <!--<ToggleSwitch Margin="20,0,0,0" OnContent="Discontinued" OffContent="Continued"/>-->
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

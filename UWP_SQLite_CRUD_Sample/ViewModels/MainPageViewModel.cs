@@ -9,6 +9,7 @@ using Template10.Services.NavigationService;
 using DataBase;
 using System.Collections.ObjectModel;
 using UWP_SQLite_CRUD_Sample.Views;
+using Windows.UI.Xaml.Controls;
 
 namespace UWP_SQLite_CRUD_Sample.ViewModels
 {
@@ -16,13 +17,15 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
     {
         NorthwindContext context = new NorthwindContext();
         DelegateCommand _addCommand;
-        ObservableCollection<Product> _products;
+        ObservableCollection<Product> _availableProducts;
+        ObservableCollection<Product> _discontinuedProducts;
         INavigationService navigationService;
 
         public MainPageViewModel()
         {
             _addCommand = new DelegateCommand(AddExecute);
-            _products = new ObservableCollection<Product>(context.Products);
+            _availableProducts = new ObservableCollection<Product>(context.Products.Where(a => a.Discontinued != true));
+            _discontinuedProducts = new ObservableCollection<Product>(context.Products.Where(a => a.Discontinued == true));
             navigationService = WindowWrapper.Current().NavigationServices.FirstOrDefault();
             //Creating instance of NavigationService in 26 line
             //Otherwise it will be null
@@ -30,10 +33,16 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
         }
 
         #region Bindable proprties
-        public ObservableCollection<Product> Products
+        public ObservableCollection<Product> AvailableProducts
         {
-            set { Set(ref _products, value); }
-            get { return _products; }
+            set { Set(ref _availableProducts, value); }
+            get { return _availableProducts; }
+        }
+
+        public ObservableCollection<Product> DiscontinuedProducts
+        {
+            set { Set(ref _discontinuedProducts, value); }
+            get { return _discontinuedProducts; }
         }
         #endregion
 
@@ -49,5 +58,10 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
 
         #endregion
         #endregion
+
+        public void ListView_DragItemsStarting(object sender, DragItemsStartingEventArgs e)
+        {
+
+        }
     }
 }
