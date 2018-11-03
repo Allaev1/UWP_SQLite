@@ -23,7 +23,7 @@
 
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <AppBarButton Icon="Add" Command="{x:Bind ViewModel.AddCommand}"/>
-            <AppBarButton Icon="Edit" Command="{x:Bind ViewModel.EditCommand}"/>
+            <!--<AppBarButton Icon="Edit" Command="{x:Bind ViewModel.EditCommand}"/>-->
         </StackPanel>
 
         <TextBlock Text="Products is available" Grid.Row="1" HorizontalAlignment="Center" />
