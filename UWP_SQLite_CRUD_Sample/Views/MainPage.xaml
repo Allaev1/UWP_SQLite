@@ -21,7 +21,10 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <AppBarButton HorizontalAlignment="Right" Icon="Add" Command="{x:Bind ViewModel.AddCommand}" Grid.Column="1"/>
+        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <AppBarButton Icon="Add" Command="{x:Bind ViewModel.AddCommand}"/>
+            <AppBarButton Icon="Edit" Command="{x:Bind ViewModel.}"/>
+        </StackPanel>
 
         <TextBlock Text="Products is available" Grid.Row="1" HorizontalAlignment="Center" />
         <TextBlock Text="Discontinued product" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"/>

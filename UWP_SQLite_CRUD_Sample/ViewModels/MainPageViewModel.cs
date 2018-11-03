@@ -20,6 +20,7 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
     {
         NorthwindContext context = new NorthwindContext();
         DelegateCommand _addCommand;
+        DelegateCommand _editCommand;
         ObservableCollection<Product> _availableProducts;
         ObservableCollection<Product> _discontinuedProducts;
         INavigationService navigationService;
@@ -28,6 +29,7 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
         public MainPageViewModel()
         {
             _addCommand = new DelegateCommand(AddExecute);
+            _editCommand = new DelegateCommand(EditExecute, CanEditExecute);
             _availableProducts = new ObservableCollection<Product>(context.Products.Where(a => a.Discontinued != true));
             _discontinuedProducts = new ObservableCollection<Product>(context.Products.Where(a => a.Discontinued == true));
             navigationService = WindowWrapper.Current().NavigationServices.FirstOrDefault();
@@ -61,19 +63,31 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
             navigationService.Navigate(typeof(AddEditPage));
 
         #endregion
+
+        #region EditCommand
+        public DelegateCommand EditCommand
+        {
+            get { return _editCommand ?? (_editCommand = new DelegateCommand(EditExecute, CanEditExecute)); }
+        }
+
+        private bool CanEditExecute()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void EditExecute()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
         #endregion
 
-        #region EventHendlers
-
-        #region Events of availale list
+        #region Generic event handlers
         public void DragItemsStarting(object sender, DragItemsStartingEventArgs e)
         {
             e.Data.RequestedOperation = DataPackageOperation.Move;
             draggableItem = e.Items.Last() as Product;
         }
-        #endregion
-
-        #region Events of discontinued list
 
         #region Reminder to DragOver
         //Usually used to implement logic that prevent
@@ -86,7 +100,6 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
             ListView listViewSender = sender as ListView;
             List<Product> currentList = new List<Product>(listViewSender.ItemsSource as IEnumerable<Product>);
 
-            //TODO: Coupling with view!!!!!! Find way not to use reference on the view
             if (currentList.Count == 0 || currentList.Count == 0)
                 e.AcceptedOperation = DataPackageOperation.Move;
             else if (draggableItem.Discontinued == false && currentList.First().Discontinued == false
@@ -136,7 +149,6 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
 
             context.SaveChanges();
         }
-        #endregion
         #endregion
     }
 }
