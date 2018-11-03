@@ -8,6 +8,9 @@ using DataBase;
 using UWP_SQLite_CRUD_Sample.Views;
 using Template10.Common;
 using Template10.Services.NavigationService;
+using Windows.UI.Xaml.Navigation;
+using System.Runtime.CompilerServices;
+using System.ComponentModel;
 
 namespace UWP_SQLite_CRUD_Sample.ViewModels
 {
@@ -27,6 +30,27 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
             navigationService = WindowWrapper.Current().NavigationServices.FirstOrDefault();
         }
 
+        #region Navigation event handler
+        public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
+        {
+            if (parameter != null)
+            {
+                Product productToEdit = parameter as Product;
+                Id = productToEdit.Id;
+                ProductName = productToEdit.ProductName;
+                UnitPrice = productToEdit.UnitPrice;
+                OnPropertyChanged("Id");
+            }
+
+            return Task.CompletedTask;
+        }
+        #endregion
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            //PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         #region Bindable properties
         int _id;
         public int Id
@@ -42,8 +66,8 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
             get { return _productName; }
         }
 
-        int _unitPrice;
-        public int UnitPrice
+        decimal _unitPrice;
+        public decimal UnitPrice
         {
             set { Set(ref _unitPrice, value); }
             get { return _unitPrice; }

@@ -45,6 +45,17 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
             get { return _availableProducts; }
         }
 
+        Product _selectedProduct;
+        public Product SelectedProduct
+        {
+            set
+            {
+                _selectedProduct = value;
+                EditCommand.RaiseCanExecuteChanged();
+            }
+            get { return _selectedProduct; }
+        }
+
         public ObservableCollection<Product> DiscontinuedProducts
         {
             set { Set(ref _discontinuedProducts, value); }
@@ -70,15 +81,11 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
             get { return _editCommand ?? (_editCommand = new DelegateCommand(EditExecute, CanEditExecute)); }
         }
 
-        private bool CanEditExecute()
-        {
-            throw new NotImplementedException();
-        }
+        private bool CanEditExecute() =>
+            SelectedProduct == null ? false : true;
 
-        private void EditExecute()
-        {
-            throw new NotImplementedException();
-        }
+        private void EditExecute() =>
+            navigationService.Navigate(typeof(AddEditPage), SelectedProduct);
         #endregion
         #endregion
 

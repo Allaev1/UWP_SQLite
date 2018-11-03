@@ -23,11 +23,11 @@
 
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <AppBarButton Icon="Add" Command="{x:Bind ViewModel.AddCommand}"/>
-            <AppBarButton Icon="Edit" Command="{x:Bind ViewModel.}"/>
+            <AppBarButton Icon="Edit" Command="{x:Bind ViewModel.EditCommand}"/>
         </StackPanel>
 
         <TextBlock Text="Products is available" Grid.Row="1" HorizontalAlignment="Center" />
-        <TextBlock Text="Discontinued product" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"/>
+        <TextBlock Text="Discontinued products" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"/>
 
         <ListView x:Name="AvailableList" ItemsSource="{x:Bind ViewModel.AvailableProducts,Mode=TwoWay}" 
                   CanDragItems="True" 
@@ -35,7 +35,8 @@
                   Grid.Row="2"
                   Drop="{x:Bind ViewModel.Drop}"
                   DragOver="{x:Bind ViewModel.DragOver}"
-                  AllowDrop="True">
+                  AllowDrop="True"
+                  SelectedItem="{x:Bind ViewModel.SelectedProduct,Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="dataBase:Product">
                     <StackPanel>
@@ -59,7 +60,8 @@
                   CanDragItems="True"
                   DragOver="{x:Bind ViewModel.DragOver}"
                   DragItemsStarting="{x:Bind ViewModel.DragItemsStarting}"
-                  Drop="{x:Bind ViewModel.Drop}">
+                  Drop="{x:Bind ViewModel.Drop}"
+                  SelectedItem="{x:Bind ViewModel.SelectedProduct,Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="dataBase:Product">
                     <StackPanel>
