@@ -84,9 +84,13 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
         public void DragOver(object sender, DragEventArgs e)
         {
             ListView listViewSender = sender as ListView;
+            List<Product> currentList = new List<Product>(listViewSender.ItemsSource as IEnumerable<Product>);
+
             //TODO: Coupling with view!!!!!! Find way not to use reference on the view
-            if (draggableItem.Discontinued == false && listViewSender.Name == "AvailableList"
-                || draggableItem.Discontinued == true && listViewSender.Name == "DiscontinuedList")
+            if (currentList.Count == 0 || currentList.Count == 0)
+                e.AcceptedOperation = DataPackageOperation.Move;
+            else if (draggableItem.Discontinued == false && currentList.First().Discontinued == false
+                || draggableItem.Discontinued == true && currentList.First().Discontinued == true)
                 e.AcceptedOperation = DataPackageOperation.None;
             else
                 e.AcceptedOperation = DataPackageOperation.Move;
