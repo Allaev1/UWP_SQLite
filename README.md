@@ -4,6 +4,8 @@ of SQLite.
 
 **In that project used:**
 - UWP;
+- SQLite;
+- Northwind database;
 - Template10;
 - MVVM;
 - IoC container;
