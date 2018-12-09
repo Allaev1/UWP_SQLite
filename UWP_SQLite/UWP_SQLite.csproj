@@ -7,8 +7,8 @@
     <ProjectGuid>{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UWP_SQLite_CRUD_Sample</RootNamespace>
-    <AssemblyName>UWP_SQLite_CRUD_Sample</AssemblyName>
+    <RootNamespace>UWP_SQLite</RootNamespace>
+    <AssemblyName>UWP_SQLite</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17134.0</TargetPlatformVersion>
