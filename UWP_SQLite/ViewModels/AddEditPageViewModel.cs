@@ -38,7 +38,7 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
                 Product productToEdit = parameter as Product;
                 Id = productToEdit.Id;
                 ProductName = productToEdit.ProductName;
-                UnitPrice = productToEdit.UnitPrice;
+                UnitPrice = Convert.ToInt32(productToEdit.UnitPrice);
                 OnPropertyChanged("Id");
             }
 
@@ -66,8 +66,8 @@ namespace UWP_SQLite_CRUD_Sample.ViewModels
             get { return _productName; }
         }
 
-        decimal _unitPrice;
-        public decimal UnitPrice
+        int _unitPrice;
+        public int UnitPrice
         {
             set { Set(ref _unitPrice, value); }
             get { return _unitPrice; }
