@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UWP_SQLite", "UWP_SQLite_CRUD_Sample\UWP_SQLite.csproj", "{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UWP_SQLite", "UWP_SQLite\UWP_SQLite.csproj", "{4146CC59-6454-4DB8-A1B4-EEFF88A326BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
